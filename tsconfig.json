@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "commonjs",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["node"]
+    },
+    "include": [
+        "*.ts",
+        "tests/**/*.ts",
+        "pages/**/*.ts",
+        "actions/**/*.ts",
+        "data/**/*.ts",
+        "utils/**/*.ts"
+    ],
+}
