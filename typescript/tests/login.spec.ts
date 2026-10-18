@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginAction } from '../actions/LoginAction';
+import { InventoryAction } from '../actions/InventoryAction';
 import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
 import { USERS } from '../data/users';
@@ -38,4 +39,15 @@ test('Empty credentials', async ({ page }) => {
 
     await expect(loginPage.errorMessage).toBeVisible();
     await expect(loginPage.errorMessage).toContainText('Username is required');
+});
+
+test('Standard user can add a backpack to the cart', async ({ page }) => {
+    const loginAction = new LoginAction(page);
+    const inventoryAction = new InventoryAction(page);
+    const inventoryPage = new InventoryPage(page);
+
+    await loginAction.login(USERS.standard.username, USERS.standard.password);
+    await inventoryAction.addBackpackToCart();
+    
+    await expect(inventoryPage.cartBadge).toHaveText('1');
 });
